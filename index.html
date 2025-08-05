@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LED Name Mover</title>
+       <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .input-area {
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            gap: 10px;
+        }
+        .input-area input[type="text"] {
+            padding: 10px 16px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 6px;
+            outline: none;
+            background: #222;
+            color: #ff0000;
+            box-shadow: 0 0 10px #ff0000, 0 0 2px #fff inset;
+            font-family: 'Arial Black', Arial, sans-serif;
+        }
+        .input-area button {
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 6px;
+            background: #ff0000;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 0 10px #ff0000, 0 0 2px #fff inset;
+            transition: background 0.2s;
+        }
+        .input-area button:hover {
+            background: #cc0000;
+        }
+        .led-container {
+            width: 100vw;
+            overflow: hidden;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+        }
+        .led-text {
+            display: inline-block;
+            font-size: 8vw;
+            color: #ff0000;
+            font-family: 'Arial Black', Arial, sans-serif;
+            text-shadow:
+                1 1 20px #ff0000,
+                0 0 40px #ff0000,
+                0 0 60px #ff0000,
+                0 0 80px #ff0000;
+            white-space: nowrap;
+            animation: scroll-left 10s linear infinite;
+        }
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(100vw);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="input-area">
+        <input type="text" id="nameInput" placeholder="Enter your name" />
+        <button onclick="setName()">Show Name</button>
+    </div>
+    <div class="led-container">
+        <span class="led-text" id="ledText">Please Enter Your Name</span>
+    </div>
+    <script>
+        function setName() {
+            const name = document.getElementById('nameInput').value.trim();
+            if (name) {
+                document.getElementById('ledText').textContent = name;
+            }
+        }
+    </script>
+</body>
+</html>
